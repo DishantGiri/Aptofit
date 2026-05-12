@@ -33,3 +33,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+/* ============================================================
+   NAVIGATION LOGIC
+   ============================================================ */
+const navMenu = document.getElementById('nav-menu'),
+      navToggle = document.getElementById('nav-toggle'),
+      navClose = document.getElementById('nav-close'),
+      navbar = document.getElementById('navbar');
+
+/* ── Toggle Menu ── */
+if (navToggle) {
+  navToggle.addEventListener('click', () => {
+    navMenu.classList.add('show-menu');
+  });
+}
+
+if (navClose) {
+  navClose.addEventListener('click', () => {
+    navMenu.classList.remove('show-menu');
+  });
+}
+
+/* ── Remove Menu on Mobile Link Click ── */
+const navLink = document.querySelectorAll('.nav__link');
+navLink.forEach(n => n.addEventListener('click', () => {
+  navMenu.classList.remove('show-menu');
+}));
+
+/* ── Change Navbar Background on Scroll ── */
+window.addEventListener('scroll', () => {
+  if (window.scrollY >= 50) {
+    navbar.classList.add('nav--scroll');
+  } else {
+    navbar.classList.remove('nav--scroll');
+  }
+});
