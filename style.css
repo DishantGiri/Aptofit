@@ -1433,24 +1433,27 @@ body {
 .pros-cons__column--pros .pros-cons__list li i { color: #3d9a6a; }
 .pros-cons__column--cons .pros-cons__list li i { color: #d4a017; }
 
-/* -- Image Placeholder -- */
-.pros-cons__image-placeholder {
-  margin-top: auto;
+/* -- Image -- */
+.pros-cons__image {
+  margin-top: 32px;
   width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 16px;
-  background: linear-gradient(135deg, #f0f4f4 0%, #e0e8e8 100%);
-  border: 2px dashed rgba(127,140,170,0.25);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: var(--c-mid);
+  overflow: hidden;
 }
-.pros-cons__image-placeholder i { font-size: 2.5rem; opacity: 0.3; }
-.pros-cons__image-placeholder span { font-weight: 700; font-size: 0.9rem; }
-.pros-cons__img-hint { font-size: 0.75rem !important; opacity: 0.7; font-weight: 400 !important; }
+
+.pros-cons__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.5s ease;
+  transform: scale(0.98);
+}
+
+.pros-cons__column:hover .pros-cons__image img {
+  transform: scale(1.05);
+}
 
 /* -- Footer -- */
 .pros-cons__footer {
