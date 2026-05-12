@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Animate copy block fade-in
   const copyEls = document.querySelectorAll(
-    '.hero__badge, .hero__headline, .hero__sub, .hero__features-heading, .hero__offer, .hero__cta, .hero__trust'
+    '.hero__badge, .hero__headline, .hero__sub, .hero__features-heading, .hero__offer, .hero__triggers, .hero__cta, .hero__trust'
   );
   copyEls.forEach((el, i) => {
     el.style.opacity = '0';
