@@ -62,12 +62,20 @@ document.addEventListener('DOMContentLoaded', () => {
     navMenu.classList.remove('show-menu');
   }));
 
-  /* ── Change Navbar Background on Scroll ── */
+  /* ── Change Navbar Background & Show Floating CTA on Scroll ── */
+  const floatingBtn = document.getElementById('floating-buy-btn');
   const scrollHeader = () => {
     if (window.scrollY >= 50) {
       navHeader.classList.add('nav--scroll');
     } else {
       navHeader.classList.remove('nav--scroll');
+    }
+
+    // Show floating button after hero section (approx 600px)
+    if (window.scrollY >= 600) {
+      floatingBtn?.classList.add('active');
+    } else {
+      floatingBtn?.classList.remove('active');
     }
   };
   window.addEventListener('scroll', scrollHeader);
