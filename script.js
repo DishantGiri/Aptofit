@@ -71,5 +71,77 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
   window.addEventListener('scroll', scrollHeader);
-  scrollHeader(); // Check on load
+  scrollHeader();
+
+  /* ============================================================
+     LIVE PURCHASE NOTIFICATION
+     ============================================================ */
+  const notifications = [
+    { user: "William M.", location: "Île-de-France, FR", time: "Just now", img: "public/product1.webp" },
+    { user: "Sarah K.", location: "Texas, USA", time: "1 min ago", img: "public/product2.webp" },
+    { user: "James O.", location: "Sydney, AU", time: "3 mins ago", img: "public/product3.webp" },
+    { user: "Elena P.", location: "Berlin, DE", time: "5 mins ago", img: "public/product4.webp" },
+    { user: "Michael S.", location: "London, UK", time: "Just now", img: "public/product2.webp" }
+  ];
+
+  let currentNotify = 0;
+  const notifyEl = document.getElementById('purchase-notification');
+  const notifyUser = document.getElementById('notification-user');
+  const notifyLoc = document.getElementById('notification-loc');
+  const notifyTime = document.getElementById('notification-time');
+  const notifyImg = document.getElementById('notification-img');
+
+  function showNotification() {
+    if (!notifyEl) return;
+    
+    const data = notifications[currentNotify];
+    notifyUser.innerText = data.user;
+    notifyLoc.innerText = data.location;
+    notifyTime.innerText = data.time;
+    notifyImg.src = data.img;
+
+    notifyEl.classList.add('active');
+
+    setTimeout(() => {
+      notifyEl.classList.remove('active');
+    }, 5000);
+
+    currentNotify = (currentNotify + 1) % notifications.length;
+  }
+
+  // Initial delay
+  setTimeout(() => {
+    showNotification();
+    setInterval(showNotification, 12000);
+  }, 3000);
+
+  const closeNotify = document.querySelector('.purchase-notification__close');
+  if (closeNotify) {
+    closeNotify.addEventListener('click', () => {
+      notifyEl.classList.remove('active');
+    });
+  }
+
+  /* ============================================================
+     FAQ ACCORDION LOGIC
+     ============================================================ */
+  const faqItems = document.querySelectorAll('.faq__item');
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq__question');
+    question.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+
+      // Close all other FAQ items for a cleaner accordion effect
+      faqItems.forEach(otherItem => {
+        otherItem.classList.remove('active');
+        otherItem.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
+      });
+
+      // If the clicked item wasn't active, open it
+      if (!isActive) {
+        item.classList.add('active');
+        question.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
 });
